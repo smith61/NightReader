@@ -29,6 +29,10 @@
             android:name="mdc.collab.nightreader.activities.ListViewActivity"
             android:label="@string/title_activity_list_view" >
         </activity>
+        <activity
+            android:name="mdc.collab.nightreader.activities.PlayerActivity"
+            android:label="@string/title_activity_player" >
+        </activity>
     </application>
 
 </manifest>

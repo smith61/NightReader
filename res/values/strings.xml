@@ -8,5 +8,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_list_view">ListViewActivity</string>
     <string name="MainActivity_MenuTextString">Loading...</string>
+    <string name="title_activity_player">PlayerActivity</string>
+    <string name="album_art_desc">Album Art</string>
 
 </resources>

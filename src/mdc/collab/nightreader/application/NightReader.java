@@ -29,6 +29,8 @@ public class NightReader extends Application
 	private Typeface applicationFont;
 	private ArrayList<AudioFileInfo> audioFiles;
 	private Sorting sortedBy;
+	
+	private AudioFileInfo curAudioFile;
 
 	public enum Sorting
 	{
@@ -46,6 +48,10 @@ public class NightReader extends Application
 		sortedBy = Sorting.NONE;
 	}
 	
+	public AudioFileInfo getCurAudioFile() {
+		return this.curAudioFile;
+	}
+	
 
 	
 	/**
@@ -58,15 +64,45 @@ public class NightReader extends Application
 		stopMedia();
 		mediaPlayer = MediaPlayer.create( getApplicationContext(), file.uri );
 		mediaPlayer.start();
+		
+		this.curAudioFile = file;
 	}
 	
 	
 	/**
 	 * stops the active player, if necessary
+	 * 
+	 * Media can not be restarted after calling this
 	 */
 	public void stopMedia()
 	{
 		if( mediaPlayer != null ) mediaPlayer.stop();
+		
+		NightReader.mediaPlayer = null;
+		this.curAudioFile = null;
+	}
+	
+	/**
+	 * Pauses the active MediaPlayer if one exists.
+	 */
+	public void pauseMedia() {
+		if( NightReader.mediaPlayer != null ) {
+			NightReader.mediaPlayer.pause();
+		}
+	}
+	
+	/**
+	 * Toggles the active media player between paused and playing
+	 */
+	public void toggleMediaState() {
+		if( mediaPlayer != null ) {
+			if( mediaPlayer.isPlaying() ) {
+				mediaPlayer.pause();
+			}
+			else {
+				mediaPlayer.start();
+			}
+		}
 	}
 
 	

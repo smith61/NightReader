@@ -12,6 +12,7 @@ import mdc.collab.nightreader.application.NightReader.Sorting;
 import mdc.collab.nightreader.util.AudioFileInfo;
 import mdc.collab.nightreader.util.AudioFileInfoAdapter;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -47,17 +48,19 @@ public class ListViewActivity extends Activity
 			public void onItemClick( AdapterView<?> adapter, View v, int position, long id )
 			{
 				Log.i( TAG, "onItemSelected" );
-				if( position == last )
+				if( position != last )
 				{
-					last = -1;
-					application.stopMedia();
-				}
-				else
-				{
+					/*
+					 * Should we manage the starting of audio into
+					 * 	the player activity?
+					 * 
+					 * -- Jacob Smith
+					 */
 					last = position;
 					application.playMedia( audioFiles.get( position ) );
-					ListViewActivity.this.finish();
 				}
+				Intent intent = new Intent( ListViewActivity.this, PlayerActivity.class );
+				startActivity( intent );
 			}
 		} );
 		

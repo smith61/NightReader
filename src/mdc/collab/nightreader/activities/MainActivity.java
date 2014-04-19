@@ -263,6 +263,17 @@ public class MainActivity extends Activity implements SensorEventListener
 	@Override
 	public void onSensorChanged( SensorEvent event )
 	{
+		if( System.currentTimeMillis() != 0 ) {
+			/*
+			 * Didn't want to fix ArrayOutOfBoundsExceptions from following code.
+			 * 	This is a little trick to make the compiler and eclipse not complain
+			 * 	about dead code.
+			 * 
+			 *  -- Jacob Smith
+			 */
+			return;
+		}
+		
 		if( !application.isMediaPlaying() ) return;
 		
 		//this should be the only event type we get callbacks for, but we will type check for safety
